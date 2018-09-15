@@ -15,6 +15,9 @@ def test():
     url = "https://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data"
     names = ['sepal-length', 'sepal-width', 'petal-length', 'petal-width', 'class']
     dataset = pd.read_csv(url, names=names)
+    writer = pd.ExcelWriter("output.xlsx")
+    dataset.to_excel(writer, "Sheet1")
+    writer.save()
     dataset['class'][dataset['class']=='Iris-setosa']=0
     dataset['class'][dataset['class']=='Iris-versicolor']=1
     dataset['class'][dataset['class']=='Iris-virginica']=2
